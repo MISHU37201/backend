@@ -37,9 +37,10 @@ class Appointment(MethodView):
     # post is use for adding the data
     @blp.arguments(AppointmentAddSchema)
     def post(self,  request_data):
-      Appointment_id = request_data.get('Appointment_id')
-      self.db.add_appointment(Appointment_id, request_data)
+    #   Appointment_id = request_data.get('Appointment_id')
+      self.db.add_appointment(request_data)
       return{'message': "Appointment added successfully"}, 201
+    #   return(str(request_data))
 
 
 

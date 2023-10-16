@@ -32,8 +32,8 @@ class Admin(MethodView):
         abort(404, "admin not found")
 
     def delete(self):
-        Admin_id  = request.args.get('Admin_id ')  # Use request.args.get to retrieve 'id' from the query parameters
+        Admin_id = request.args.get('Admin_id')  # Use request.args.get to retrieve 'id' from the query parameters
 
-        if self.db.delete_admin(Admin_id ):
+        if self.db.delete_admin(Admin_id):
             return {"message": "admin deleted successfully"}
-        abort(404, "admin not found")
+        abort(404, "appointment not found")

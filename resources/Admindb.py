@@ -13,7 +13,7 @@ class MyDatabase:
      self.cursor = self.connection.cursor()
 
     def add_admin(self,Admin_id, body):
-        query = f"INSERT INTO admin (Admin_id, name, email, password) VALUES ( '{Admin_id}','{body['name']}', '{body['email']}', '{body['password']}')"
+        query = f"INSERT INTO admin (Admin_id, name, email, password,role) VALUES ( '{Admin_id}','{body['name']}', '{body['email']}', '{body['password']}', '{body['role']}')"
         self.cursor.execute(query)
         self.connection.commit()
 

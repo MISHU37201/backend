@@ -42,10 +42,11 @@ class MyDatabase:
             appointment_dict["Appointment_Time"] = row[3]
         return [appointment_dict]
 
-    def add_appointment(self,Appointment_id, body):
-        query = f"INSERT INTO appointment (Appointment_id, Appointment_Date, Appointment_Time,Name,C_Email_Id,Car_Model_Make,City,ContactNo,Description) VALUES ( '{Appointment_id}','{body['Appointment_Date']}', '{body['Appointment_Time']}','{body['Name']}','{body['C_Email_Id']}','{body['Car_Model_Make']}','{body['City']}','{body['ContactNo']}','{body['Description']}')"
+    def add_appointment(self,body):
+        query = f"INSERT INTO appointment (Appointment_Date, Appointment_Time,Name,C_Email_Id,Car_Model_Make,City,ContactNo,Description) VALUES ('{body['Appointment_Date']}', '{body['Appointment_Time']}','{body['Name']}','{body['C_Email_Id']}','{body['Car_Model_Make']}','{body['City']}','{body['ContactNo']}','{body['Description']}')"
         self.cursor.execute(query)
         self.connection.commit()
+
 
     def update_appointment(self, Appointment_id, body):
         query = f"UPDATE appointment SET Appointment_Date='{body['Appointment_Date']}', Appointment_Time='{body['Appointment_Time']}' WHERE Appointment_id='{Appointment_id}'"

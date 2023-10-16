@@ -2,10 +2,29 @@ from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from resources.schemas  import CustomerSchema
+from resources.schemas  import CustomerLoginSchema
 from resources.schemas  import CustomerUpdateSchema
 from resources.Customerdb import MyDatabase
 import hashlib
 blp = Blueprint("customer", __name__, description="Operations on customer")
+
+
+@blp.route("/login")
+class Login(MethodView):
+    def __init__(self):
+        self.db = MyDatabase()
+
+    @blp.arguments(CustomerLoginSchema)
+    def post(self, request_data):
+        C_FirstName = request_data.get('C_FirstName')
+        Password = request_data.get("Password")
+        result = self.db.verify_customer(C_FirstName, Password)
+
+        if result:
+            return "Login successfully"
+        else:
+            return "Customer doesn't exist"
+        
 
 @blp.route("/customer")
 class Customer(MethodView):
@@ -60,10 +79,8 @@ class Customer(MethodView):
         if self.db.update_customer(C_Email_Id, request_data):
             return {'message': "customer updated successfully"}, 201
         abort(404, "customer not found")
+        
 
-
-
-# @blp.route('/customer', methods=['DELETE'])
 
     def delete(self):
         Customer_id = request.args.get('Customer_id')  # Use request.args.get to retrieve 'id' from the query parameters

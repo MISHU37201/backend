@@ -7,7 +7,8 @@ from resources.Bill import blp as BillBlueprint
 from resources.Service import blp as ServiceBlueprint
 from resources.Appointment import blp as AppointmentBlueprint
 from resources.Admin import blp as AdminBlueprint
-from flask_jwt_extended import JWTManager
+# from resources.Login import blp as LoginBlueprint
+# from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
 
@@ -28,6 +29,7 @@ api.register_blueprint(BillBlueprint)
 api.register_blueprint(ServiceBlueprint)
 api.register_blueprint(AppointmentBlueprint)
 api.register_blueprint(AdminBlueprint)
+# api.register_blueprint(LoginBlueprint)
 
 CORS(app)
 

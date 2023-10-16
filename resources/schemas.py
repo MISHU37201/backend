@@ -22,6 +22,11 @@ class CustomerSchema(Schema):
     Password = fields.Str(required=True)
 
 
+class CustomerLoginSchema(Schema):
+    C_FirstName = fields.Str(required=True)
+    Password = fields.Str(required=True)
+
+
 class CustomerUpdateSchema(Schema):
     C_Email_Id = fields.Str(required=True)
     C_FirstName = fields.Str(required=True)
@@ -51,7 +56,7 @@ class AppointmentSchema(Schema):
     Appointment_Time = fields.Time(required=True)
 
 class AppointmentAddSchema(Schema):
-    Appointment_id = fields.Int(required=True)
+    # Appointment_id = fields.Int(required=True)
     Appointment_Date = fields.Date(required=True)
     Appointment_Time = fields.Time(required=True)
     Name = fields.Str(required=True)
@@ -63,7 +68,7 @@ class AppointmentAddSchema(Schema):
 
 
 class AdminSchema(Schema):
-    Admin_id  = fields.Int(required=True)
+    # Admin_id  = fields.Int(required=True)
     name = fields.Str(required=True)
     email = fields.Str(required=True)
     password = fields.Str(required=True, load_only=True)
